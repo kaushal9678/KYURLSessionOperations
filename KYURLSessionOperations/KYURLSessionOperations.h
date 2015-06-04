@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KYURLSessionOperations : NSObject
+@interface KYURLSessionOperations : NSOperation
+// use it to fetch data
+-(instancetype)initWithSession:(NSURLSession*)session URL:(NSURL*)url completionHandler:(void(^)(NSData* data, NSURLResponse *response, NSError *error))completionHandler;
+// use this method to post data to API
+
+-(instancetype)initWithSession:(NSURLSession*)session request:(NSURLRequest*)request completionHandler:(void(^)(NSData *data,NSURLResponse *response,NSError *error))completionHandler;
+
+@property (nonatomic, strong, readonly) NSURLSessionDataTask *task;
 
 @end
